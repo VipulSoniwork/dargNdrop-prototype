@@ -208,24 +208,34 @@ export function PropertiesPanel({ selectedElement, onUpdate }) {
     if (type === 'grid') {
       return (
         <>
-          <SelectInput
-            label="Grid Columns"
-            value={properties.style.gridTemplateColumns}
-            options={[
-              { value: '1fr', label: '1 Column' },
-              { value: '1fr 1fr', label: '2 Columns' },
-              { value: '1fr 1fr 1fr', label: '3 Columns' },
-              { value: '1fr 1fr 1fr 1fr', label: '4 Columns' },
-            ]}
+          <TextInput
+            label="Grid Template Columns"
+            value={properties.style.gridTemplateColumns || 'repeat(2, 1fr)'}
             onChange={(value) => handleChange({ style: { gridTemplateColumns: value } })}
           />
-          <NumberInput
+          <SelectInput
+            label="Preset Columns"
+            value=""
+            options={[
+              { value: "", label: "Custom" },
+              { value: "repeat(2, 1fr)", label: "2 Equal Columns" },
+              { value: "repeat(3, 1fr)", label: "3 Equal Columns" },
+              { value: "repeat(4, 1fr)", label: "4 Equal Columns" },
+              { value: "1fr 2fr", label: "1:2 Ratio" },
+              { value: "2fr 1fr", label: "2:1 Ratio" },
+              { value: "1fr 1fr 1fr", label: "3 Equal Columns" },
+            ]}
+            onChange={(value) => value && handleChange({ style: { gridTemplateColumns: value } })}
+          />
+          <TextInput
+            label="Grid Template Rows"
+            value={properties.style.gridTemplateRows || 'auto'}
+            onChange={(value) => handleChange({ style: { gridTemplateRows: value } })}
+          />
+          <TextInput
             label="Gap"
-            value={properties.style.gap}
+            value={properties.style.gap || '1rem'}
             onChange={(value) => handleChange({ style: { gap: value } })}
-            min={0}
-            max={100}
-            unit="px"
           />
         </>
       )
@@ -235,43 +245,54 @@ export function PropertiesPanel({ selectedElement, onUpdate }) {
         <>
           <SelectInput
             label="Direction"
-            value={properties.style.flexDirection}
+            value={properties.style.flexDirection || 'row'}
             options={[
               { value: 'row', label: 'Row' },
               { value: 'column', label: 'Column' },
+              { value: 'row-reverse', label: 'Row Reverse' },
+              { value: 'column-reverse', label: 'Column Reverse' },
             ]}
             onChange={(value) => handleChange({ style: { flexDirection: value } })}
           />
           <SelectInput
             label="Justify Content"
-            value={properties.style.justifyContent}
+            value={properties.style.justifyContent || 'flex-start'}
             options={[
               { value: 'flex-start', label: 'Start' },
               { value: 'center', label: 'Center' },
               { value: 'flex-end', label: 'End' },
               { value: 'space-between', label: 'Space Between' },
               { value: 'space-around', label: 'Space Around' },
+              { value: 'space-evenly', label: 'Space Evenly' },
             ]}
             onChange={(value) => handleChange({ style: { justifyContent: value } })}
           />
           <SelectInput
             label="Align Items"
-            value={properties.style.alignItems}
+            value={properties.style.alignItems || 'stretch'}
             options={[
               { value: 'stretch', label: 'Stretch' },
               { value: 'flex-start', label: 'Start' },
               { value: 'center', label: 'Center' },
               { value: 'flex-end', label: 'End' },
+              { value: 'baseline', label: 'Baseline' },
             ]}
             onChange={(value) => handleChange({ style: { alignItems: value } })}
           />
-          <NumberInput
+          <SelectInput
+            label="Flex Wrap"
+            value={properties.style.flexWrap || 'nowrap'}
+            options={[
+              { value: 'nowrap', label: 'No Wrap' },
+              { value: 'wrap', label: 'Wrap' },
+              { value: 'wrap-reverse', label: 'Wrap Reverse' },
+            ]}
+            onChange={(value) => handleChange({ style: { flexWrap: value } })}
+          />
+          <TextInput
             label="Gap"
-            value={properties.style.gap}
+            value={properties.style.gap || '1rem'}
             onChange={(value) => handleChange({ style: { gap: value } })}
-            min={0}
-            max={100}
-            unit="px"
           />
         </>
       )

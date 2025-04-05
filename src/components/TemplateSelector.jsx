@@ -281,6 +281,505 @@ const templates = [
       },
     ],
   },
+  {
+    id: 'complete-website',
+    name: 'Complete Website',
+    description: 'A full website template with header, hero section, features, about, services, testimonials, contact form, and footer',
+    thumbnail: '⭐',
+    elements: [
+      {
+        id: 'header',
+        type: 'flex',
+        content: '',
+        style: {
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: '1rem 2rem',
+          backgroundColor: '#ffffff',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          position: 'sticky',
+          top: '0',
+          zIndex: '1000'
+        },
+        children: [
+          {
+            id: 'logo',
+            type: 'h1',
+            content: 'Your Brand',
+            style: {
+              fontSize: '1.5rem',
+              fontWeight: 'bold',
+              color: '#1a1a1a'
+            }
+          },
+          {
+            id: 'nav-menu',
+            type: 'flex',
+            content: '',
+            style: {
+              gap: '2rem'
+            },
+            children: [
+              {
+                id: 'nav-home',
+                type: 'button',
+                content: 'Home',
+                style: {
+                  color: '#1a1a1a',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  padding: '0.5rem 0.75rem'
+                }
+              },
+              {
+                id: 'nav-about',
+                type: 'button',
+                content: 'About',
+                style: {
+                  color: '#1a1a1a',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  padding: '0.5rem 0.75rem'
+                }
+              },
+              {
+                id: 'nav-services',
+                type: 'button',
+                content: 'Services',
+                style: {
+                  color: '#1a1a1a',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  padding: '0.5rem 0.75rem'
+                }
+              },
+              {
+                id: 'nav-contact',
+                type: 'button',
+                content: 'Contact',
+                style: {
+                  color: '#1a1a1a',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  padding: '0.5rem 0.75rem'
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'hero-section',
+        type: 'flex',
+        content: '',
+        style: {
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '4rem 2rem',
+          backgroundColor: '#f8fafc',
+          minHeight: '80vh',
+          flexDirection: 'column'
+        },
+        children: [
+          {
+            id: 'hero-content',
+            type: 'flex',
+            style: {
+              maxWidth: '800px',
+              textAlign: 'center',
+              flexDirection: 'column',
+              alignItems: 'center'
+            },
+            children: [
+              {
+                id: 'hero-title',
+                type: 'h1',
+                content: 'Welcome to Your Website',
+                style: {
+                  fontSize: '3rem',
+                  fontWeight: 'bold',
+                  marginBottom: '1rem',
+                  color: '#1a1a1a'
+                }
+              },
+              {
+                id: 'hero-description',
+                type: 'p',
+                content: 'Create something amazing with our powerful and flexible website builder.',
+                style: {
+                  fontSize: '1.25rem',
+                  color: '#4a5568',
+                  marginBottom: '2rem'
+                }
+              },
+              {
+                id: 'hero-cta',
+                type: 'button',
+                content: 'Get Started',
+                style: {
+                  backgroundColor: '#3b82f6',
+                  color: '#ffffff',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '0.375rem',
+                  fontWeight: '500'
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'features-section',
+        type: 'flex',
+        content: '',
+        style: {
+          padding: '4rem 2rem',
+          backgroundColor: '#ffffff',
+          flexDirection: 'column',
+          alignItems: 'center'
+        },
+        children: [
+          {
+            id: 'features-title',
+            type: 'h2',
+            content: 'Our Features',
+            style: {
+              fontSize: '2.5rem',
+              fontWeight: 'bold',
+              marginBottom: '2rem',
+              textAlign: 'center'
+            }
+          },
+          {
+            id: 'features-grid',
+            type: 'grid',
+            content: '',
+            style: {
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '2rem',
+              maxWidth: '1200px',
+              margin: '0 auto'
+            },
+            children: [
+              {
+                id: 'feature-1',
+                type: 'flex',
+                content: '',
+                style: {
+                  padding: '2rem',
+                  backgroundColor: '#f8fafc',
+                  borderRadius: '0.5rem',
+                  flexDirection: 'column'
+                },
+                children: [
+                  {
+                    id: 'feature-1-title',
+                    type: 'h3',
+                    content: 'Feature 1',
+                    style: {
+                      fontSize: '1.5rem',
+                      fontWeight: 'bold',
+                      marginBottom: '1rem'
+                    }
+                  },
+                  {
+                    id: 'feature-1-text',
+                    type: 'p',
+                    content: 'Description of your amazing feature.',
+                    style: {
+                      color: '#4a5568'
+                    }
+                  }
+                ]
+              },
+              {
+                id: 'feature-2',
+                type: 'flex',
+                content: '',
+                style: {
+                  padding: '2rem',
+                  backgroundColor: '#f8fafc',
+                  borderRadius: '0.5rem',
+                  flexDirection: 'column'
+                },
+                children: [
+                  {
+                    id: 'feature-2-title',
+                    type: 'h3',
+                    content: 'Feature 2',
+                    style: {
+                      fontSize: '1.5rem',
+                      fontWeight: 'bold',
+                      marginBottom: '1rem'
+                    }
+                  },
+                  {
+                    id: 'feature-2-text',
+                    type: 'p',
+                    content: 'Description of your amazing feature.',
+                    style: {
+                      color: '#4a5568'
+                    }
+                  }
+                ]
+              },
+              {
+                id: 'feature-3',
+                type: 'flex',
+                content: '',
+                style: {
+                  padding: '2rem',
+                  backgroundColor: '#f8fafc',
+                  borderRadius: '0.5rem',
+                  flexDirection: 'column'
+                },
+                children: [
+                  {
+                    id: 'feature-3-title',
+                    type: 'h3',
+                    content: 'Feature 3',
+                    style: {
+                      fontSize: '1.5rem',
+                      fontWeight: 'bold',
+                      marginBottom: '1rem'
+                    }
+                  },
+                  {
+                    id: 'feature-3-text',
+                    type: 'p',
+                    content: 'Description of your amazing feature.',
+                    style: {
+                      color: '#4a5568'
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'about-section',
+        type: 'flex',
+        content: '',
+        style: {
+          padding: '4rem 2rem',
+          backgroundColor: '#f8fafc',
+          flexDirection: 'column',
+          alignItems: 'center'
+        },
+        children: [
+          {
+            id: 'about-content',
+            type: 'flex',
+            content: '',
+            style: {
+              maxWidth: '800px',
+              margin: '0 auto',
+              textAlign: 'center',
+              flexDirection: 'column',
+              alignItems: 'center'
+            },
+            children: [
+              {
+                id: 'about-title',
+                type: 'h2',
+                content: 'About Us',
+                style: {
+                  fontSize: '2.5rem',
+                  fontWeight: 'bold',
+                  marginBottom: '2rem',
+                  color: '#1a1a1a'
+                }
+              },
+              {
+                id: 'about-text',
+                type: 'p',
+                content: 'Learn more about our company and our mission to help businesses succeed.',
+                style: {
+                  fontSize: '1.125rem',
+                  color: '#4a5568',
+                  lineHeight: '1.75'
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'contact-section',
+        type: 'flex',
+        content: '',
+        style: {
+          padding: '4rem 2rem',
+          backgroundColor: '#ffffff',
+          flexDirection: 'column',
+          alignItems: 'center'
+        },
+        children: [
+          {
+            id: 'contact-content',
+            type: 'flex',
+            content: '',
+            style: {
+              maxWidth: '600px',
+              margin: '0 auto',
+              flexDirection: 'column',
+              width: '100%'
+            },
+            children: [
+              {
+                id: 'contact-title',
+                type: 'h2',
+                content: 'Contact Us',
+                style: {
+                  fontSize: '2.5rem',
+                  fontWeight: 'bold',
+                  marginBottom: '2rem',
+                  textAlign: 'center',
+                  color: '#1a1a1a'
+                }
+              },
+              {
+                id: 'contact-form',
+                type: 'flex',
+                content: '',
+                style: {
+                  flexDirection: 'column',
+                  gap: '1rem',
+                  width: '100%'
+                },
+                children: [
+                  {
+                    id: 'name-input',
+                    type: 'input',
+                    content: '',
+                    style: {
+                      padding: '0.75rem',
+                      borderRadius: '0.375rem',
+                      border: '1px solid #e2e8f0',
+                      width: '100%'
+                    },
+                    placeholder: 'Your Name'
+                  },
+                  {
+                    id: 'email-input',
+                    type: 'input',
+                    content: '',
+                    style: {
+                      padding: '0.75rem',
+                      borderRadius: '0.375rem',
+                      border: '1px solid #e2e8f0',
+                      width: '100%'
+                    },
+                    placeholder: 'Your Email'
+                  },
+                  {
+                    id: 'message-input',
+                    type: 'textarea',
+                    content: '',
+                    style: {
+                      padding: '0.75rem',
+                      borderRadius: '0.375rem',
+                      border: '1px solid #e2e8f0',
+                      minHeight: '150px',
+                      width: '100%'
+                    },
+                    placeholder: 'Your Message'
+                  },
+                  {
+                    id: 'submit-button',
+                    type: 'button',
+                    content: 'Send Message',
+                    style: {
+                      backgroundColor: '#3b82f6',
+                      color: '#ffffff',
+                      padding: '0.75rem 1.5rem',
+                      borderRadius: '0.375rem',
+                      fontWeight: '500',
+                      textAlign: 'center',
+                      cursor: 'pointer',
+                      border: 'none'
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'footer',
+        type: 'flex',
+        content: '',
+        style: {
+          backgroundColor: '#1a1a1a',
+          color: '#ffffff',
+          padding: '2rem',
+          flexDirection: 'column',
+          alignItems: 'center'
+        },
+        children: [
+          {
+            id: 'footer-content',
+            type: 'flex',
+            content: '',
+            style: {
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              maxWidth: '1200px',
+              margin: '0 auto',
+              width: '100%'
+            },
+            children: [
+              {
+                id: 'footer-copyright',
+                type: 'p',
+                content: '© 2024 Your Company. All rights reserved.',
+                style: {
+                  color: '#9ca3af'
+                }
+              },
+              {
+                id: 'footer-links',
+                type: 'flex',
+                content: '',
+                style: {
+                  gap: '2rem'
+                },
+                children: [
+                  {
+                    id: 'footer-privacy',
+                    type: 'button',
+                    content: 'Privacy Policy',
+                    style: {
+                      color: '#9ca3af',
+                      backgroundColor: 'transparent',
+                      border: 'none',
+                      padding: '0.5rem',
+                      cursor: 'pointer'
+                    }
+                  },
+                  {
+                    id: 'footer-terms',
+                    type: 'button',
+                    content: 'Terms of Service',
+                    style: {
+                      color: '#9ca3af',
+                      backgroundColor: 'transparent',
+                      border: 'none',
+                      padding: '0.5rem',
+                      cursor: 'pointer'
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 ]
 
 function TemplateCard({ template, onSelect }) {

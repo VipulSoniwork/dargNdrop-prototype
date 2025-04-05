@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useDrop, useDrag } from 'react-dnd'
 
 function Element({ id, type, content, style, onClick, onDrop, onRemove, onMove, children }) {
@@ -39,7 +38,7 @@ function Element({ id, type, content, style, onClick, onDrop, onRemove, onMove, 
 
   const elementProps = {
     ref: elementRef,
-    className: `group relative border border-dashed border-gray-300 p-4 mb-4 cursor-move transition-all ${
+    className: `group relative border ${type === 'container' ? 'border-dashed' : 'border-solid'} border-gray-300 p-4 mb-4 cursor-move transition-all ${
       isOver ? 'border-primary bg-primary/5' : 'hover:border-primary'
     } ${isDragging ? 'opacity-50' : ''}`,
     onClick: (e) => {
@@ -53,18 +52,18 @@ function Element({ id, type, content, style, onClick, onDrop, onRemove, onMove, 
   }
 
   const ElementControls = () => (
-    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2  shadow-sm rounded p-1">
+    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2  shadow-sm rounded p-1 font-bold">
       <button
         onClick={(e) => {
           e.stopPropagation()
           onRemove()
         }}
-        className="bg-red-500 text-white p-1 rounded w-6 flex items-center justify-center hover:bg-red-600 transition-colors text-sm "
+        className="bg-red-500 text-white p-1 rounded w-6 h-6 flex items-center justify-center hover:bg-red-600 transition-colors text-sm "
         title="Remove element"
       >
         ✕
       </button>
-      <div className="cursor-move px-2 py-1 bg-gray-100 rounded" title="Drag to reorder">
+      <div className="cursor-move px-2 py-1 bg-gray-100 rounded w-6 h-6 flex items-center justify-center  text-black text-sm" title="Drag to reorder">
         ⋮⋮
       </div>
     </div>
@@ -185,7 +184,11 @@ function Element({ id, type, content, style, onClick, onDrop, onRemove, onMove, 
         return (
           <div {...elementProps}>
             <ElementControls />
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid gap-4" style={{
+              gridTemplateColumns: style?.gridTemplateColumns || 'repeat(2, 1fr)',
+              gap: style?.gap || '1rem',
+              ...style
+            }}>
               {children || (
                 <>
                   <div className="border border-gray-200 p-4 rounded bg-white">Column 1</div>
@@ -199,7 +202,14 @@ function Element({ id, type, content, style, onClick, onDrop, onRemove, onMove, 
         return (
           <div {...elementProps}>
             <ElementControls />
-            <div className="flex gap-4">
+            <div className="flex" style={{
+              flexDirection: style?.flexDirection || 'row',
+              justifyContent: style?.justifyContent || 'flex-start',
+              alignItems: style?.alignItems || 'stretch',
+              gap: style?.gap || '1rem',
+              flexWrap: style?.flexWrap || 'nowrap',
+              ...style
+            }}>
               {children || (
                 <>
                   <div className="flex-1 border border-gray-200 p-4 rounded bg-white">Flex Item 1</div>
@@ -223,8 +233,9 @@ function Element({ id, type, content, style, onClick, onDrop, onRemove, onMove, 
         return (
           <div {...elementProps}>
             <ElementControls />
-            {content || 'Container'}
-            {children}
+            <div className="border-2 border-dashed border-gray-300 p-4 rounded min-h-[80px] bg-gray-50">
+              {children}
+            </div>
           </div>
         )
     }

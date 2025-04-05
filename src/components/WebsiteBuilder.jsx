@@ -71,6 +71,116 @@ function flattenElements(elements, parentId = null) {
   return flattened
 }
 
+// Add this function to render elements recursively for preview
+function renderPreviewElement(element) {
+  if (!element) return null;
+  
+  const style = element.style || {};
+  
+  // Create a basic element based on type
+  let content = null;
+  switch (element.type) {
+    case 'h1':
+      content = <h1 style={style}>{element.content || 'Heading 1'}</h1>;
+      break;
+    case 'h2':
+      content = <h2 style={style}>{element.content || 'Heading 2'}</h2>;
+      break;
+    case 'h3':
+      content = <h3 style={style}>{element.content || 'Heading 3'}</h3>;
+      break;
+    case 'p':
+      content = <p style={style}>{element.content || 'Paragraph text'}</p>;
+      break;
+    case 'button':
+      content = <button style={style}>{element.content || 'Button'}</button>;
+      break;
+    case 'img':
+      content = element.content ? 
+        <img src={element.content} alt="Content" style={style} /> : 
+        <div style={{...style, background: '#f3f4f6', height: '120px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <span style={{color: '#9ca3af'}}>Image placeholder</span>
+        </div>;
+      break;
+    case 'video':
+      content = element.content ? 
+        <video controls src={element.content} style={style}>Your browser does not support video.</video> : 
+        <div style={{...style, background: '#f3f4f6', height: '180px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <span style={{color: '#9ca3af'}}>Video placeholder</span>
+        </div>;
+      break;
+    case 'input':
+      content = <input type="text" placeholder={element.content || "Text input"} style={style} />;
+      break;
+    case 'textarea':
+      content = <textarea placeholder={element.content || "Text area"} rows="4" style={style} />;
+      break;
+    case 'select':
+      content = (
+        <select style={style}>
+          <option value="">Select an option</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+      );
+      break;
+    case 'grid':
+      content = (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: style.gridTemplateColumns || 'repeat(2, 1fr)',
+          gap: style.gap || '1rem',
+          ...style
+        }}>
+          {element.children?.map(child => renderPreviewElement(child)) || (
+            <>
+              <div style={{padding: '1rem', border: '1px solid #e5e7eb', borderRadius: '0.25rem', background: 'white'}}>Column 1</div>
+              <div style={{padding: '1rem', border: '1px solid #e5e7eb', borderRadius: '0.25rem', background: 'white'}}>Column 2</div>
+            </>
+          )}
+        </div>
+      );
+      break;
+    case 'flex':
+      content = (
+        <div style={{
+          display: 'flex',
+          flexDirection: style.flexDirection || 'row',
+          justifyContent: style.justifyContent || 'flex-start',
+          alignItems: style.alignItems || 'stretch',
+          gap: style.gap || '1rem',
+          flexWrap: style.flexWrap || 'nowrap',
+          ...style
+        }}>
+          {element.children?.map(child => renderPreviewElement(child)) || (
+            <>
+              <div style={{flex: 1, padding: '1rem', border: '1px solid #e5e7eb', borderRadius: '0.25rem', background: 'white'}}>Flex Item 1</div>
+              <div style={{flex: 1, padding: '1rem', border: '1px solid #e5e7eb', borderRadius: '0.25rem', background: 'white'}}>Flex Item 2</div>
+            </>
+          )}
+        </div>
+      );
+      break;
+    case 'icon':
+      content = <div style={{...style, display: 'flex', justifyContent: 'center'}}><span style={{fontSize: '1.5rem'}}>{element.content || '★'}</span></div>;
+      break;
+    default:
+      content = (
+        <div style={style}>
+          {element.children?.map(child => renderPreviewElement(child))}
+        </div>
+      );
+      break;
+  }
+  
+  return (
+    <div key={element.id}>
+      {content}
+    </div>
+  );
+}
+
 export function WebsiteBuilder() {
   const [activeTab, setActiveTab] = useState("templates")
   const [selectedElement, setSelectedElement] = useState(null)
@@ -239,22 +349,7 @@ export function WebsiteBuilder() {
             <DevicePreview
               content={
                 <div className="max-w-5xl mx-auto p-8">
-                  {elementHierarchy.map((element) => (
-                    <div
-                      key={element.id}
-                      style={element.style}
-                    >
-                      {element.content}
-                      {element.children?.map((child) => (
-                        <div
-                          key={child.id}
-                          style={child.style}
-                        >
-                          {child.content}
-                        </div>
-                      ))}
-                    </div>
-                  ))}
+                  {elementHierarchy.map(element => renderPreviewElement(element))}
                 </div>
               }
             />
